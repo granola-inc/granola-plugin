@@ -2,15 +2,21 @@
   "name": "granola",
   "displayName": "Granola",
   "version": "1.0.0",
-  "description": "Your meetings in your workflow. Granola gives your agent what your team discussed, decided, and committed to in meetings.",
+  "description": "The AI notepad for meetings. Connect to your meeting history and use your conversation context to get things done.",
   "logo": "assets/logo.svg",
   "suggestedPrompts": [
-    "Prep me for my next meeting",
-    "What did we decide about this project in recent meetings?",
-    "Check my changes against what we agreed in meetings"
+    "What did we decide in my meetings this week?",
+    "What action items came out of my last meeting?",
+    "Summarize what my team discussed about this project"
   ],
   "category": "Productivity",
-  "keywords": ["meetings", "notes", "decisions", "context", "granola"],
+  "keywords": [
+    "meetings",
+    "notes",
+    "decisions",
+    "context",
+    "granola"
+  ],
   "author": {
     "name": "Granola",
     "email": "hello@granola.ai",
