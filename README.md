@@ -22,4 +22,4 @@ Apache-2.0. See [LICENSE](LICENSE).
 
 ## Feedback
 
-Reach out at hello@granola.ai.
+Reach out at hey@granola.so.
