@@ -8,13 +8,9 @@ Granola gives your agent access to what your team discussed, decided, and commit
 
 In Google Antigravity, open **Customizations → Plugins** and install Granola. The first time you use a Granola tool, you'll be prompted to sign in via your browser. You need a [Granola](https://granola.ai) account with meeting data.
 
-## Agent
-
-**granola-engineer** — A decisions-aware assistant that anchors implementation choices to meeting context, cites meetings, and flags work that wasn't discussed.
-
 ## Granola MCP
 
-The plugin connects to Granola's MCP server at `https://mcp.granola.ai/mcp`. The server provides the current tools and tells the agent which one fits each request, so the agent describes what to do rather than which tool to call.
+The plugin connects to Granola's MCP server at `https://mcp.granola.ai/mcp`. The plugin only installs that connection: the server provides the tools and the instructions for using them, so the plugin can't fall out of date as the server changes.
 
 ## Feedback
 

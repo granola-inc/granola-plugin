@@ -28,24 +28,3 @@ jobs:
                   json.load(file, parse_constant=reject_constant)
           PY
 
-      - name: Check skill names match their folders
-        run: |
-          # Antigravity exposes each skill as /<name> and rejects a name that differs from its folder.
-          shopt -s nullglob
-          status=0
-          for file in skills/*/SKILL.md; do
-            folder=$(basename "$(dirname "$file")")
-            if ! grep -qx "name: $folder" "$file"; then
-              echo "$file: frontmatter name must be '$folder'"
-              status=1
-            fi
-          done
-          exit $status
-
-      - name: Reject hardcoded MCP tool names
-        run: |
-          # Granola's MCP server routes agents to the right tool; naming tools here goes stale when the server changes.
-          if grep -rnsE '`[a-z]+(_[a-z]+)+`' skills agents; then
-            echo "Describe what to do and let the Granola server pick the tool, instead of naming MCP tools."
-            exit 1
-          fi
