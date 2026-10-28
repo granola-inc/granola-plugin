@@ -23,5 +23,6 @@
     "url": "https://granola.ai"
   },
   "homepage": "https://granola.ai",
+  "license": "Apache-2.0",
   "repository": "https://github.com/granola-inc/granola-plugin"
 }
