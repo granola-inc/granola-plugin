@@ -1,0 +1,51 @@
+name: Validate configuration
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Validate JSON
+        run: |
+          python3 -I - <<'PY'
+          import json
+
+          def reject_constant(value):
+              raise ValueError(f"Invalid JSON constant: {value}")
+
+          for path in (".antigravity-plugin/plugin.json", "mcp_config.json"):
+              with open(path, encoding="utf-8") as file:
+                  json.load(file, parse_constant=reject_constant)
+          PY
+
+      - name: Check skill names match their folders
+        run: |
+          # Antigravity exposes each skill as /<name> and rejects a name that differs from its folder.
+          shopt -s nullglob
+          status=0
+          for file in skills/*/SKILL.md; do
+            folder=$(basename "$(dirname "$file")")
+            if ! grep -qx "name: $folder" "$file"; then
+              echo "$file: frontmatter name must be '$folder'"
+              status=1
+            fi
+          done
+          exit $status
+
+      - name: Reject hardcoded MCP tool names
+        run: |
+          # Granola's MCP server routes agents to the right tool; naming tools here goes stale when the server changes.
+          if grep -rnsE '`[a-z]+(_[a-z]+)+`' skills agents; then
+            echo "Describe what to do and let the Granola server pick the tool, instead of naming MCP tools."
+            exit 1
+          fi
