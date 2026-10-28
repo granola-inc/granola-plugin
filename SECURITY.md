@@ -18,7 +18,7 @@ We will acknowledge receipt within 2 business days and aim to provide a fix or m
 
 This policy covers:
 
-- The `granola-plugin` repository (skills, agent instructions, MCP configuration)
+- The `granola-plugin` repository (plugin manifest and MCP configuration)
 - The Granola MCP server at `mcp.granola.ai`
 
 ## Out of Scope
