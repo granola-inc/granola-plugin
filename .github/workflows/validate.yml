@@ -28,3 +28,22 @@ jobs:
                   json.load(file, parse_constant=reject_constant)
           PY
 
+
+      - name: Check Marketplace fields
+        run: |
+          python3 -I - <<'PY'
+          import json
+          import os
+          import sys
+
+          with open(".antigravity-plugin/plugin.json", encoding="utf-8") as file:
+              manifest = json.load(file)
+
+          required = ["name", "displayName", "description", "logo", "suggestedPrompts", "version", "author"]
+          missing = [field for field in required if not manifest.get(field)]
+          if missing:
+              sys.exit(f"plugin.json is missing fields the Marketplace requires: {', '.join(missing)}")
+
+          if not manifest["logo"].startswith("https://") and not os.path.isfile(manifest["logo"]):
+              sys.exit(f"plugin.json logo {manifest['logo']!r} does not exist")
+          PY
