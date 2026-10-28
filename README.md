@@ -12,6 +12,14 @@ In Google Antigravity, open **Customizations → Plugins** and install Granola. 
 
 The plugin connects to Granola's MCP server at `https://mcp.granola.ai/mcp`. The plugin only installs that connection: the server provides the tools and the instructions for using them, so the plugin can't fall out of date as the server changes.
 
+## Releasing
+
+Once the plugin is published, bump `version` in `.antigravity-plugin/plugin.json` whenever you change the manifest, `mcp_config.json` or `assets/`. Installed clients only update when the version changes.
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE).
+
 ## Feedback
 
 Reach out at hello@granola.ai.
